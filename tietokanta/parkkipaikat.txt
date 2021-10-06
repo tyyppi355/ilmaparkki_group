@@ -1,0 +1,3 @@
+Osoite: Karamalmi
+Parkkiaika: Kokopäivän
+Parkkialueen koko: Suuri
