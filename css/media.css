@@ -1,0 +1,14 @@
+@media (min-width: 700px) {
+  main {
+    width: 67%;
+  }
+  aside {
+    width: 30%;
+    margin-left: 3%;
+  }
+  #container {
+    width: 100%;
+    max-width: 1280px;
+  }
+}
+/*# sourceMappingURL=media.css.map */

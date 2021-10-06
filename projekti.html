@@ -1,150 +1,96 @@
 <!DOCTYPE html>
-<html lang='en'>
-
+<html lang='fi'>
 
 <head>
 	<meta charset='utf-8'>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel='stylesheet' type='text/css' href='css/stylesheet.css'>
-	<link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200&display=swap" rel="stylesheet">
-	<title>Ilmaiset parkkipaikat</title>
+	<link rel='stylesheet' type='text/css' href='css/main.css'>
+	<link rel='stylesheet' type='text/css' href='css/header.css'>
+	<link rel='stylesheet' type='text/css' href='css/map.css'>
+	<link rel='stylesheet' type='text/css' href='css/media.css'>
+	<!-- <link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> -->
+	<!-- <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200&display=swap" rel="stylesheet"> -->
+	<title>Ilmaparkki</title>
 </head>
 
-
 <body>
+	<div id='container'>
+		<header>
+			<!-- <div class="headerImage">
+				<a href="./index.html"><img src="./media/img/header.png" alt="IlmaParkki logo"></a>
+			</div> -->
+		</header>
 
+		<nav>
+			<ul class='main-menu'>
+				<li><a href="./index.html">Parkkipaikat</a></li>
+				<li><a href="./about.html" class="activeBtn">Projektistamme</a></li>
+				<li><a href="./contacts.html">Yhteystiedot</a></li>
+			</ul>
+		</nav>
 
-<div id='container'>
+		<main>
+			<section class="map">
+				<input id="searchInput" class="controls hidden" type="text" placeholder="Hae osoite">
+				<div id="map"></div>
+				<!-- <table class="geo-data hidden" id="table">
+					<tbody>
+						<tr>
+							<td>Osoite:</td>
+							<td><span id="location"></span></td>
+						</tr>
+						<tr>
+							<td>Postitoimipaikka:</td>
+							<td><span id="postal_code"></span></td>
+						</tr>
+						<tr>
+							<td>Maa:</td>
+							<td><span id="country"></span></td>
+						</tr>
+						<tr>
+							<td>Leveysaste:</td>
+							<td><span id="lat"></span></td>
+						</tr>
+						<tr>
+							<td>Pituusaste:</td>
+							<td><span id="lon"></span></td>
+						</tr>
+					</tbody>
+				</table> -->
+			</section>
+		</main>
 
+		<aside class='aside'>
+			<section>
+				<h2>Lisätietoa</h2>
+				<p>
+					Olemme voittoa taivoittelematon jengi, joka kertoo teille parhaimmat ilmaiset parkkipaikat ympäri Espoota.
+				</p>
+			</section>
 
-<header>
+			<section>
+				<h2>Kuvia??</h2>
+				<p>
+					............img.............
+				</p>
+			</section>
 
-	<h1>Ilmaiset parkkipaikat</h1>
+			<section>
+				<h2>Päivityksiä</h2>
+				<p>
+					Tästä päivästä lähtien teemme yhteistyötä tämän yhtiön kanssa. <br> Oletteko jo nähneet uuden sivustomme...
+				</p>
+			</section>
+		</aside>
 
-</header>
+		<footer>
+		</footer>
+	</div>
 
-
-<nav>
-	<ul class='main-menu'>
-	<li><a href='projekti.html'>Etusivu</a></li>
-	<li><a href='projekti.html'>Meistä</a></li>
-	<li><a href='projekti.html'>Jokusivu</a></li>
-	</ul>
-</nav>
-
-
-<main>
-
-	
-	<section>
-
-
-		<h2>Haku</h2>
-
-		<form id="search">
-		<input id="searchText" type="text" name="searchText" placeholder="Hae osoitetta"/>
-		<button id="button">Hae</button>
-		</form>
-
-		<figure id="parkingSpotImg">
-		</figure>
-
-		<div id="results">
-
-		</div>
-	
-
-	</section>
-
-
-	<section>
-
-		<h2>Kartta</h2>
-
-		<figure>
-
-			<div class="adjuster">
-
-				<iframe frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://www.openstreetmap.org/export/embed.html?bbox=24.737048151728235%2C60.21879870822266%2C24.781250956293665%2C60.22994486620659&amp;layer=mapnik" style="border: 1px solid black"></iframe>
-
-			</div>
-
-		</figure>
-
-	</section>
-
-
-	<section>
-	
-		<h2>Video</h2>
-		
-		<figure>
-		
-		<div class='adjuster'>
-
-			<iframe src="https://www.youtube.com/embed/7l7lXy532HE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
-
-			</iframe>
-		</div>
-
-		<figcaption>
-		Videota parkkipaikoista
-		</figcaption>
-		
-		</figure>
-		
-	</section>
-
-</main>
-
-
-<aside class='aside'>
-
-	<section>
-		
-		<h2>Lisätietoa</h2>
-		
-		<p>
-		Olemme voittoa taivoittelematon jengi, joka kertoo teille parhaimmat ilmaiset parkkipaikat ympäri Espoota.
-		</p>
-		
-	</section>
-	
-	<section>
-			
-		<h2>Kuvia??</h2>
-		
-		
-		<p>
-		............img.............
-		</p>
-		
-	</section>
-	
-	<section>
-		
-		<h2>Päivityksiä</h2>
-		
-		
-		<p>
-		Tästä päivästä lähtien teemme yhteistyötä tämän yhtiön kanssa. <br> Oletteko jo nähneet uuden sivustomme...
-		</p>
-		
-	</section>
-	
-</aside>
-
-
-<footer>
-</footer>
-
-
-</div>
-
-<script src='js/kartta_ja_haku.js'>
-</script>
-
+	<script src="./js/map.js"></script>
+  <script async
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDSiKk0sELkvIVZ7n1YxqRlvyDLdWGpARU&libraries=places&callback=initMap">
+  </script>
 </body>
 </html>

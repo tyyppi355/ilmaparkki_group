@@ -1,0 +1,42 @@
+[
+  {
+    "position": {
+      "lat": 60.221324,
+      "lng": 24.757737
+    },
+    "address": "Espoo, Karasvängen 7",
+    "duration": 1
+  },
+  {
+    "position": {
+      "lat": 60.203106,
+      "lng": 24.655107
+    },
+    "address": "Espoo, Siltakuja 2",
+    "duration": 8
+  },
+  {
+    "position": {
+      "lat": 60.157936,
+      "lng": 24.956715
+    },
+    "address": "Helsinki, Iso Puistotie 1",
+    "duration": 4
+  },
+  {
+    "position": {
+      "lat": 60.174403,
+      "lng": 24.806545
+    },
+    "address": "Espoo, Itätuulentie 11",
+    "duration": 2
+  },
+  {
+    "position": {
+      "lat": 60.17229,
+      "lng": 24.812764
+    },
+    "address": "Espoo, Sateenkaari 3A",
+    "duration": 4
+  }
+]
