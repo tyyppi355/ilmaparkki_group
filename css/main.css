@@ -1,7 +1,8 @@
 header,
 nav,
 main,
-aside {
+aside,
+footer {
   display: block;
   width: 100%;
 }
@@ -9,6 +10,7 @@ aside {
 html {
   overflow: scroll;
   overflow-x: hidden;
+  font-family: "Roboto", sans-serif;
 }
 
 html::-webkit-scrollbar {
@@ -76,13 +78,13 @@ div {
   display: flex;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
-  padding: 5px;
   background: #061a40;
   word-wrap: break-word;
   width: 100%;
-  margin: auto;
-  border: solid 1px #000000;
-  border-radius: 6px;
+  margin: 0 auto;
+  border-radius: 3px;
+  -webkit-box-shadow: 0 0 0 3px #061a40;
+          box-shadow: 0 0 0 3px #061a40;
 }
 
 .aside {

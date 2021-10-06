@@ -6,35 +6,21 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel='stylesheet' type='text/css' href='css/main.css'>
 	<link rel='stylesheet' type='text/css' href='css/header.css'>
+	<link rel='stylesheet' type='text/css' href='css/footer.css'>
 	<link rel='stylesheet' type='text/css' href='css/map.css'>
 	<link rel='stylesheet' type='text/css' href='css/media.css'>
-	<!-- <link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> -->
-	<!-- <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200&display=swap" rel="stylesheet"> -->
 	<title>Ilmaparkki</title>
 </head>
 
 <body>
 	<div id='container'>
-		<header>
-			<!-- <div class="headerImage">
-				<a href="./index.html"><img src="./media/img/header.png" alt="IlmaParkki logo"></a>
-			</div> -->
-		</header>
-
-		<nav>
-			<ul class='main-menu'>
-				<li><a href="./index.html">Parkkipaikat</a></li>
-				<li><a href="./about.html" class="activeBtn">Projektistamme</a></li>
-				<li><a href="./contacts.html">Yhteystiedot</a></li>
-			</ul>
-		</nav>
+		<script src="./js/header.js"></script>
 
 		<main>
 			<section class="map">
 				<input id="searchInput" class="controls hidden" type="text" placeholder="Hae osoite">
 				<div id="map"></div>
-				<!-- <table class="geo-data hidden" id="table">
+				<table class="geo-data hidden" id="table">
 					<tbody>
 						<tr>
 							<td>Osoite:</td>
@@ -57,35 +43,13 @@
 							<td><span id="lon"></span></td>
 						</tr>
 					</tbody>
-				</table> -->
+				</table>
 			</section>
 		</main>
 
-		<aside class='aside'>
-			<section>
-				<h2>Lisätietoa</h2>
-				<p>
-					Olemme voittoa taivoittelematon jengi, joka kertoo teille parhaimmat ilmaiset parkkipaikat ympäri Espoota.
-				</p>
-			</section>
+		<script src="./js/aside.js"></script>
 
-			<section>
-				<h2>Kuvia??</h2>
-				<p>
-					............img.............
-				</p>
-			</section>
-
-			<section>
-				<h2>Päivityksiä</h2>
-				<p>
-					Tästä päivästä lähtien teemme yhteistyötä tämän yhtiön kanssa. <br> Oletteko jo nähneet uuden sivustomme...
-				</p>
-			</section>
-		</aside>
-
-		<footer>
-		</footer>
+		<script src="./js/footer.js"></script>
 	</div>
 
 	<script src="./js/map.js"></script>
