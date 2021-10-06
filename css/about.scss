@@ -1,0 +1,27 @@
+.about {
+  text-align: center;
+  padding: 0 10px;
+
+  .personsWrap {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    .person {
+
+      padding-bottom: 30px;
+      
+      // &:not(:first-of-type) {
+      //   padding-top: 30px;
+      // }
+
+      figure {
+        margin: 0;
+      }
+
+      img {
+        width: 100%;
+      }
+    }
+  }
+}

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang='fi'>
+
+<head>
+	<meta charset='utf-8'>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel='stylesheet' type='text/css' href='css/main.css'>
+	<link rel='stylesheet' type='text/css' href='css/header.css'>
+	<link rel='stylesheet' type='text/css' href='css/footer.css'>
+	<link rel='stylesheet' type='text/css' href='css/map.css'>
+	<link rel='stylesheet' type='text/css' href='css/media.css'>
+	<title>Ilmaparkki</title>
+</head>
+
+<body>
+	<div id='container'>
+		<script src="./js/header.js"></script>
+
+		<main>
+			<section class="map">
+				<input id="searchInput" class="controls hidden" type="text" placeholder="Hae osoite">
+				<div id="map"></div>
+				<table class="geo-data hidden" id="table">
+					<tbody>
+						<tr>
+							<td>Osoite:</td>
+							<td><span id="location"></span></td>
+						</tr>
+						<tr>
+							<td>Postitoimipaikka:</td>
+							<td><span id="postal_code"></span></td>
+						</tr>
+						<tr>
+							<td>Maa:</td>
+							<td><span id="country"></span></td>
+						</tr>
+						<tr>
+							<td>Leveysaste:</td>
+							<td><span id="lat"></span></td>
+						</tr>
+						<tr>
+							<td>Pituusaste:</td>
+							<td><span id="lon"></span></td>
+						</tr>
+					</tbody>
+				</table>
+			</section>
+		</main>
+
+		<script src="./js/aside.js"></script>
+
+		<script src="./js/footer.js"></script>
+	</div>
+
+	<script src="./js/map.js"></script>
+  <script async
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDSiKk0sELkvIVZ7n1YxqRlvyDLdWGpARU&libraries=places&callback=initMap">
+  </script>
+</body>
+</html>

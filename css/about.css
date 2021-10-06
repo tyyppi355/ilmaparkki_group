@@ -1,0 +1,28 @@
+.about {
+  text-align: center;
+  padding: 0 10px;
+}
+
+.about .personsWrap {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.about .personsWrap .person {
+  padding-bottom: 30px;
+}
+
+.about .personsWrap .person figure {
+  margin: 0;
+}
+
+.about .personsWrap .person img {
+  width: 100%;
+}
+/*# sourceMappingURL=about.css.map */
