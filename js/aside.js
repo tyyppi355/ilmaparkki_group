@@ -3,25 +3,20 @@
 const aside = `
   <aside class='aside'>
     <section>
-      <h2>Lisätietoa</h2>
+      <h2>COVID-19 päivityksiä</h2>
       <p>
-        Olemme voittoa taivoittelematon jengi, joka kertoo teille parhaimmat ilmaiset parkkipaikat ympäri Espoota.
+        API: Maailman tuoreen tilanteen koronasta
       </p>
     </section>
 
     <section>
-      <h2>Kuvia??</h2>
+      <h2>Sää ennuste</h2>
       <p>
-        ............img.............
+        API: sää ennuste
       </p>
     </section>
 
-    <section>
-      <h2>Päivityksiä</h2>
-      <p>
-        Tästä päivästä lähtien teemme yhteistyötä tämän yhtiön kanssa. <br> Oletteko jo nähneet uuden sivustomme...
-      </p>
-    </section>
+    
   </aside>
 `;
 
