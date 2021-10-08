@@ -24,6 +24,17 @@ html* {
   font-family: "Roboto", sans-serif;
 }
 
+html h2 {
+  position: relative;
+  color: #ffffff;
+  background: #2849a4;
+  text-align: center;
+  width: 100%;
+  padding: 12px 0px 12px;
+  font-family: "Roboto", sans-serif;
+  font-size: 20px;
+}
+
 main {
   margin: 0;
 }
@@ -40,18 +51,6 @@ section {
 li {
   font-family: "Roboto", sans-serif;
   list-style-type: none;
-}
-
-h2 {
-  position: relative;
-  color: #ffffff;
-  background: #2849a4;
-  text-align: center;
-  width: 100%;
-  padding: 12px 0px 12px;
-  margin: 0;
-  font-family: "Roboto", sans-serif;
-  font-size: 20px;
 }
 
 figcaption {

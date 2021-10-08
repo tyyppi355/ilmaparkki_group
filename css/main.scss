@@ -25,6 +25,18 @@ html {
 		margin: 0;
 		font-family: $font-family;
 	}
+
+	h2 {
+		position: relative;
+		color: #ffffff;
+		background: #2849a4;
+		text-align: center;
+		width: 100%;
+		padding: 12px 0px 12px;
+		// margin: 0;
+		font-family: $font-family;
+		font-size: 20px;
+	}
 }
 
 main {
@@ -45,17 +57,7 @@ li {
 	list-style-type: none;
 }
 
-h2 {
-	position: relative;
-	color: #ffffff;
-	background: #2849a4;
-	text-align: center;
-	width: 100%;
-	padding: 12px 0px 12px;
-	margin: 0;
-	font-family: $font-family;
-	font-size: 20px;
-}
+
 
 figcaption {
 	color: #FFFFFF;
