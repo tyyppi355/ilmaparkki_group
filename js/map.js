@@ -46,7 +46,7 @@ function initMap() {
   const getAddressFromCoords = (map, coords, marker) => {
     const lat = coords.lat;
     const lng = coords.lng;
-    const url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=AIzaSyDSiKk0sELkvIVZ7n1YxqRlvyDLdWGpARU`;
+    const url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=`;
     fetch(url)
     .then( response => response.json() )
     .then( data => {
