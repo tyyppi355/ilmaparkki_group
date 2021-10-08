@@ -38,6 +38,25 @@ function initMap() {
   }
 
   /**
+   * Osoitetta yksityikohtia antaminen koordinoiden perusteella
+   * @param {*} map     sivustolla oleva kartta
+   * @param {*} coords  koordinaatit
+   * @param {*} marker  paikan luottu merkki
+   */
+  const getAddressFromCoords = (map, coords, marker) => {
+    const lat = coords.lat;
+    const lng = coords.lng;
+    const url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=AIzaSyDSiKk0sELkvIVZ7n1YxqRlvyDLdWGpARU`;
+    fetch(url)
+    .then( response => response.json() )
+    .then( data => {
+      printLocationData(map, data.results[0], marker);
+      // console.log(data.results[0].address_components);
+    })
+    .catch( err => console.log(err.message) );
+  }
+
+  /**
    * Lisätään kartalle nykysijainti-nappia
    */
   const setCurrentLocationButton = () => {
@@ -78,6 +97,9 @@ function initMap() {
             infoWindow.open(map, currentLocMarker);
             map.setCenter(pos);
             map.setZoom(17);
+
+            getAddressFromCoords(map, pos, currentLocMarker);
+            document.querySelector('.geoData').classList.remove('hidden');
           },
           // Virhekäsittely
           () => {
@@ -113,9 +135,6 @@ function initMap() {
     var input = document.getElementById('searchInput');
     // Lisätään hakukenttaa kartalle
     map.controls[google.maps.ControlPosition.LEFT_CENTER].push(input);
-
-    // Osoitetietotaulukkoa sivulta saaminen
-    var receivedGeoData = document.querySelector('.geoData');
 
     /*
     Google-rajapinnan 'Autocomplete' käyttäminen
@@ -156,49 +175,48 @@ function initMap() {
       marker.setVisible(true);
 
       // Osoiteilmoitustietojen luominen (kartan merkille antamista varten)
-      var address = '';
-      if (place.address_components) {
-        address = [
-          (place.address_components[0] && place.address_components[0].short_name || ''),
-          (place.address_components[1] && place.address_components[1].short_name || ''),
-          (place.address_components[2] && place.address_components[2].short_name || '')
-        ].join(' ');
-      }
-
-      // Ponnahdusilmoitusta löydettysijainnissa luominen
-      infoWindow.setContent('<div><strong>' + place.name + '</strong><br>' + address);
-      infoWindow.open(map, marker);
-
-      // Löytöosoitteen tietojen laittaminen taulukkoon sivulle
-      for (var i = 0; i < place.address_components.length; i++) {
-        if (place.address_components[i].types[0] == 'postal_code') {
-          document.getElementById('postal_code').innerHTML = place.address_components[i].long_name;
-        }
-        if (place.address_components[i].types[0] == 'country') {
-          document.getElementById('country').innerHTML = place.address_components[i].long_name;
-        }
-      }
-      document.getElementById('location').innerHTML = place.formatted_address;
-      document.getElementById('lat').innerHTML = place.geometry.location.lat();
-      document.getElementById('lon').innerHTML = place.geometry.location.lng();
-
-      // Osoitetietojen taulukkoa näyttäminen sivulle
-      receivedGeoData.classList.remove('hidden');
+      printLocationData(map, place, marker)
     });
   }
 
   setSearchFunctionality();
 
   /**
-   * Kartalla painettua merrkia tietojen tulostaminen (klikkaamalla merkille)
-   * @param {*} marker  Merkki-olio
+   * Osoitteen tietojen tulostaminen funktio
+   * @param {*} map     sivustolla oleva kartta
+   * @param {*} place   löydetty paikka
+   * @param {*} marker  luottu merkki
    */
-  const printLocationData = (marker) => {
-    document.getElementById('postal_code').innerHTML = place.address_components[i].long_name;
-    document.getElementById('country').innerHTML = place.address_components[i].long_name;
+  const printLocationData = (map, place, marker) => {
+    var address = '';
+    if (place.address_components) {
+      address = [
+        (place.address_components[0] && place.address_components[0].short_name || ''),
+        (place.address_components[1] && place.address_components[1].short_name || ''),
+        (place.address_components[2] && place.address_components[2].short_name || '')
+      ].join(' ');
+    }
+
+    // Ponnahdusilmoitusta löydettysijainnissa luominen
+    // infoWindow.setContent('<div><strong>' + place.name + '</strong><br>' + address);
+    infoWindow.setContent('<div><strong>' + 'Osoitteesi:' + '</strong><br>' + address);
+    infoWindow.open(map, marker);
+
+    // Löytöosoitteen tietojen laittaminen taulukkoon sivulle
+    for (var i = 0; i < place.address_components.length; i++) {
+      if (place.address_components[i].types[0] == 'postal_code') {
+        document.getElementById('postal_code').innerHTML = place.address_components[i].long_name;
+      }
+      if (place.address_components[i].types[0] == 'country') {
+        document.getElementById('country').innerHTML = place.address_components[i].long_name;
+      }
+    }
     document.getElementById('location').innerHTML = place.formatted_address;
-    document.getElementById('lat').innerHTML = place.geometry.location.lat();
-    document.getElementById('lon').innerHTML = place.geometry.location.lng();
+
+    // Osoitetietotaulukkoa sivulta saaminen
+    var receivedGeoData = document.querySelector('.geoData');
+    // Osoitetietojen taulukkoa näyttäminen sivulle
+    receivedGeoData.classList.remove('hidden');
   }
 
   /* 
@@ -283,7 +301,7 @@ function initMap() {
       infoWindow.setContent(getDurationMsg(this));
       infoWindow.open(map, this);
       // Merkkia tietoja tulostaminen sivustolla olevalle taulukolle
-      printLocationData(this);
+      // printLocationData(this);
     }
   }
 

@@ -20,14 +20,6 @@ const aside = `
             <td>Maa:</td>
             <td><span id="country"></span></td>
           </tr>
-          <tr>
-            <td>Leveysaste:</td>
-            <td><span id="lat"></span></td>
-          </tr>
-          <tr>
-            <td>Pituusaste:</td>
-            <td><span id="lon"></span></td>
-          </tr>
         </tbody>
       </table>
     </section>
