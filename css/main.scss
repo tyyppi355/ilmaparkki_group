@@ -25,6 +25,18 @@ html {
 		margin: 0;
 		font-family: $font-family;
 	}
+
+	h2 {
+		position: relative;
+		color: #ffffff;
+		background: #2849a4;
+		text-align: center;
+		width: 100%;
+		padding: 12px 0px 12px;
+		// margin: 0;
+		font-family: $font-family;
+		font-size: 20px;
+	}
 }
 
 main {
@@ -45,17 +57,7 @@ li {
 	list-style-type: none;
 }
 
-h2 {
-	position: relative;
-	color: #ffffff;
-	background: #2849a4;
-	text-align: center;
-	width: 100%;
-	padding: 12px 0px 12px;
-	margin: 0;
-	font-family: $font-family;
-	font-size: 20px;
-}
+
 
 figcaption {
 	color: #FFFFFF;
@@ -89,7 +91,6 @@ div {
 .aside {
 	background-color: #061a40;
 
-
 	p {
 		display: block;
 		margin: 0;
@@ -97,4 +98,35 @@ div {
 		font-family: $font-family;
 		font-size: 16px;
 	}
+
+	#geoData {
+		width: 90%;
+		text-align: left;
+		border-collapse: collapse;
+		margin: 0 auto 20px;
+		
+		tbody {
+	
+			tr {
+				border: 1px solid grey;
+				height: 30px;
+	
+				td {
+					padding: 10px;
+	
+					&:nth-child(odd) {
+						background: #e9f1ff;
+					}
+	
+					&:nth-child(even) {
+						background: #f7fcff;
+					}
+				}
+			}
+		}
+	}
+}
+
+.hidden {
+	display: none;
 }

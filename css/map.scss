@@ -4,12 +4,13 @@ main {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 20px 0;
+    // padding: 20px 0;
     text-align: center;
 
     #map {
       width: 95%;
       height: 80vh;
+      margin-bottom: 20px;
     }
   }
 }

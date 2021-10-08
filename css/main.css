@@ -24,6 +24,17 @@ html* {
   font-family: "Roboto", sans-serif;
 }
 
+html h2 {
+  position: relative;
+  color: #ffffff;
+  background: #2849a4;
+  text-align: center;
+  width: 100%;
+  padding: 12px 0px 12px;
+  font-family: "Roboto", sans-serif;
+  font-size: 20px;
+}
+
 main {
   margin: 0;
 }
@@ -40,18 +51,6 @@ section {
 li {
   font-family: "Roboto", sans-serif;
   list-style-type: none;
-}
-
-h2 {
-  position: relative;
-  color: #ffffff;
-  background: #2849a4;
-  text-align: center;
-  width: 100%;
-  padding: 12px 0px 12px;
-  margin: 0;
-  font-family: "Roboto", sans-serif;
-  font-size: 20px;
 }
 
 figcaption {
@@ -97,5 +96,33 @@ div {
   padding: 30px;
   font-family: "Roboto", sans-serif;
   font-size: 16px;
+}
+
+.aside #geoData {
+  width: 90%;
+  text-align: left;
+  border-collapse: collapse;
+  margin: 0 auto 20px;
+}
+
+.aside #geoData tbody tr {
+  border: 1px solid grey;
+  height: 30px;
+}
+
+.aside #geoData tbody tr td {
+  padding: 10px;
+}
+
+.aside #geoData tbody tr td:nth-child(odd) {
+  background: #e9f1ff;
+}
+
+.aside #geoData tbody tr td:nth-child(even) {
+  background: #f7fcff;
+}
+
+.hidden {
+  display: none;
 }
 /*# sourceMappingURL=main.css.map */

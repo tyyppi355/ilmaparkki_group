@@ -5,9 +5,9 @@
 	<meta charset='utf-8'>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel='stylesheet' type='text/css' href='css/main.css'>
+	<link rel='stylesheet' type='text/css' href='css/contacts.css'>
 	<link rel='stylesheet' type='text/css' href='css/header.css'>
 	<link rel='stylesheet' type='text/css' href='css/footer.css'>
-	<link rel='stylesheet' type='text/css' href='css/map.css'>
 	<link rel='stylesheet' type='text/css' href='css/media.css'>
 	<title>Ilmaparkki</title>
 </head>
@@ -15,17 +15,18 @@
 <body>
 	<div id='container'>
 		<script src="./js/header.js"></script>
-		<script>
-			const menuLinks = document.querySelectorAll('.main-menu li a');
-			menuLinks[0].classList.add('activeMenu');
-		</script>
 
 		<main>
-			<section class="map">
-				<h2>Ilmaiset parkkipaikat kartalla</h2>
-				<input id="searchInput" class="controls hidden" type="text" placeholder="Hae osoite">
-				<div id="map"></div>
-				
+			<section class="contacts">
+				<h2>Ota yhteyttä meihin</h2>
+	
+				<form class="form">
+					<p type="Nimesi:"><input placeholder="Laita nimesi tähän"></input></p>
+					<p type="S-posti:"><input placeholder="Miten otetaan yhteyttä sinuun"></input></p>
+					<p type="Viestisi:"><input placeholder="Laita viestiti tähän"></input></p>
+					<button type="submit">Lähetä</button>
+				</form>
+	
 			</section>
 		</main>
 
@@ -33,11 +34,8 @@
 
 		<script src="./js/footer.js"></script>
 	</div>
-
-	<script src="./js/map.js"></script>
-  <script async
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDSiKk0sELkvIVZ7n1YxqRlvyDLdWGpARU&libraries=places&callback=initMap">
-  </script>
+	
 	<script src="./js/main.js"></script>
+	<script src="./js/feedback.js"></script>
 </body>
 </html>
