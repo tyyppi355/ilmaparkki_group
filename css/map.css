@@ -15,6 +15,7 @@ main .map {
 main .map #map {
   width: 95%;
   height: 80vh;
+  margin-bottom: 20px;
 }
 
 #searchInput {

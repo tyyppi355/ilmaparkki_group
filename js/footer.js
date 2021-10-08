@@ -1,5 +1,7 @@
+// Tämä moduuli tulostaa sivulle 'footer'-elementin
 'use strict';
 
+// Elementtia luominen
 const footer = `
 <footer>
   <ul>
@@ -12,4 +14,5 @@ const footer = `
 </footer>
 `;
 
+// Elementtia tulostaminen
 document.write(footer);

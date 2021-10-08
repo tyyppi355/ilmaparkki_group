@@ -1,5 +1,7 @@
+// Tämä moduuli tulostaa sivulle 'header'-elementin
 'use strict';
 
+// Elementtia luominen
 const header = `
 <header>
 </header>
@@ -13,4 +15,5 @@ const header = `
 </nav>
 `;
 
+// Elementtia tulostaminen
 document.write(header);

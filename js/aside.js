@@ -1,5 +1,7 @@
+// Tämä moduuli tulostaa sivulle 'aside'-elementin
 'use strict';
 
+// Elementtia luominen
 const aside = `
   <aside class='aside'>
     <section>
@@ -20,4 +22,5 @@ const aside = `
   </aside>
 `;
 
+// Elementtia tulostaminen
 document.write(aside);
