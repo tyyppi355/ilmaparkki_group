@@ -1,6 +1,7 @@
 .about {
   text-align: center;
   padding: 0 10px;
+  color: white;
 
   .personsWrap {
     display: flex;
@@ -10,10 +11,6 @@
     .person {
 
       padding-bottom: 30px;
-      
-      // &:not(:first-of-type) {
-      //   padding-top: 30px;
-      // }
 
       figure {
         margin: 0;

@@ -41,6 +41,7 @@ function initMap() {
             infoWindow.setContent("Olet tässä");
             infoWindow.open(map, currentLocMarker);
             map.setCenter(pos);
+            map.setZoom(17);
           },
           () => {
             handleLocationError(true, infoWindow, map.getCenter());

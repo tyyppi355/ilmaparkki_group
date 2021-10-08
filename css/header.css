@@ -40,8 +40,25 @@ header {
   background: #2849a4;
 }
 
+.main-menu li a:hover:after {
+  content: '';
+  display: block;
+  height: 2px;
+  background: white;
+  width: 150px;
+  margin: 10px auto 0;
+}
+
 .activeMenu {
   color: white;
-  -webkit-text-stroke: 1px #03a3e2;
+}
+
+.activeMenu:after {
+  content: '';
+  display: block;
+  height: 2px;
+  background: white;
+  width: 150px;
+  margin: 10px auto 0;
 }
 /*# sourceMappingURL=header.css.map */

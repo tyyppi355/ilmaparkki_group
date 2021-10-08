@@ -3,6 +3,7 @@ footer {
   min-height: 120px;
   background: #2849a4;
   text-align: center;
+  color: white;
 }
 
 footer ul {
@@ -45,7 +46,5 @@ footer ul li a:hover {
 footer h4 {
   margin: 0;
   padding-bottom: 20px;
-  font-size: 20px;
-  font-family: 'Roboto', sans-serif;
 }
 /*# sourceMappingURL=footer.css.map */
