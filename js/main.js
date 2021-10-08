@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const setActiveMenu = () => {
     const menuLinks = document.querySelectorAll('.main-menu li a');
     const url = document.location.href;
-    for (let i = 0; i < menuLinks.length; i++) {
+    for (let i = 1; i < menuLinks.length; i++) {
       if (url === menuLinks[i].href) {
         menuLinks[i].className += 'activeMenu';
       }
