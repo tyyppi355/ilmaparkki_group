@@ -97,4 +97,31 @@ div {
   font-family: "Roboto", sans-serif;
   font-size: 16px;
 }
+
+.aside #geoData {
+  margin: 10px;
+  text-align: left;
+  border-collapse: collapse;
+}
+
+.aside #geoData tbody tr {
+  border: 1px solid grey;
+  height: 30px;
+}
+
+.aside #geoData tbody tr td {
+  padding: 10px;
+}
+
+.aside #geoData tbody tr td:nth-child(odd) {
+  background: #e9f1ff;
+}
+
+.aside #geoData tbody tr td:nth-child(even) {
+  background: #f7fcff;
+}
+
+.hidden {
+  display: none;
+}
 /*# sourceMappingURL=main.css.map */

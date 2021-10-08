@@ -4,6 +4,34 @@
 // Elementtia luominen
 const aside = `
   <aside class='aside'>
+    <section class='geoData hidden'>
+      <h2>Osoitteesi tiedot</h2>
+      <table class="geo-data" id="geoData">
+        <tbody>
+          <tr>
+            <td>Osoite:</td>
+            <td><span id="location"></span></td>
+          </tr>
+          <tr>
+            <td>Postitoimipaikka:</td>
+            <td><span id="postal_code"></span></td>
+          </tr>
+          <tr>
+            <td>Maa:</td>
+            <td><span id="country"></span></td>
+          </tr>
+          <tr>
+            <td>Leveysaste:</td>
+            <td><span id="lat"></span></td>
+          </tr>
+          <tr>
+            <td>Pituusaste:</td>
+            <td><span id="lon"></span></td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
     <section>
       <h2>COVID-19 päivityksiä</h2>
       <p>

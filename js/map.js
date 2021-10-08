@@ -3,7 +3,9 @@
 
 var map, infoWindow;
 
-// Rajapinnan yleisfunktio
+/**
+ * Rajapinnan yleisfunktio
+ */
 function initMap() {
   // Peruskarttaasetukset
   var opt = {
@@ -13,7 +15,6 @@ function initMap() {
     },
     zoom: 11,
     scrollwheel: false,
-
   }
 
   // Karttaa luominen Google-rajapinnan kautta
@@ -21,7 +22,24 @@ function initMap() {
   // Ponnahdusilmoitusta luominen (olion)
   infoWindow = new google.maps.InfoWindow();
 
-  // Lisätään kartalle nykysijainti-nappia
+  /**
+   * Merkin ikonia asentaminen funktio
+   * @param {object} marker   Merkki-olio
+   * @param {number} size     Ikonin koko pikselilla
+   */
+  const setMarkerIcon = (marker, size) => {
+    marker.setIcon(({
+      url: '../media/img/currentPlace.png',
+      sixe: new google.maps.Size(71, 71),
+      origin: new google.maps.Point(0, 0),
+      anchor: new google.maps.Point(17, 34),
+      scaledSize: new google.maps.Size(size, size),
+    }));
+  }
+
+  /**
+   * Lisätään kartalle nykysijainti-nappia
+   */
   const setCurrentLocationButton = () => {
 
     // Luodaan napin
@@ -50,6 +68,8 @@ function initMap() {
               position: pos,
               map,
             });
+
+            setMarkerIcon(currentLocMarker, 50);
 
             // Ponnahdusilmoitusta nykysijainnissa luominen
             infoWindow.setPosition(pos);
@@ -85,7 +105,9 @@ function initMap() {
 
   setCurrentLocationButton();
 
-    // Lisätään kartalle osoitehaku-toimintoa
+  /**
+   * Lisätään kartalle osoitehaku-toimintoa
+   */
   const setSearchFunctionality = () => {
     // Hakukenttaa sivulta saaminen
     var input = document.getElementById('searchInput');
@@ -93,7 +115,7 @@ function initMap() {
     map.controls[google.maps.ControlPosition.LEFT_CENTER].push(input);
 
     // Osoitetietotaulukkoa sivulta saaminen
-    var receivedGeoData = document.querySelector('.geo-data');
+    var receivedGeoData = document.querySelector('.geoData');
 
     /*
     Google-rajapinnan 'Autocomplete' käyttäminen
@@ -128,13 +150,7 @@ function initMap() {
       }
 
       // Löytyvää positiota merkkiä luominen kartalle
-      marker.setIcon(({
-        url: '../img/parkkiMerkki48.ico',
-        sixe: new google.maps.Size(71, 71),
-        origin: new google.maps.Point(0, 0),
-        anchor: new google.maps.Point(17, 34),
-        scaledSize: new google.maps.Size(35, 35),
-      }));
+      setMarkerIcon(marker, 35);
 
       marker.setPosition(place.geometry.location);
       marker.setVisible(true);
@@ -154,17 +170,17 @@ function initMap() {
       infoWindow.open(map, marker);
 
       // Löytöosoitteen tietojen laittaminen taulukkoon sivulle
-      for (var i = 0; i < marker.address_components.length; i++) {
-        if (marker.address_components[i].types[0] == 'postal_code') {
-          document.getElementById('postal_code').innerHTML = marker.address_components[i].long_name;
+      for (var i = 0; i < place.address_components.length; i++) {
+        if (place.address_components[i].types[0] == 'postal_code') {
+          document.getElementById('postal_code').innerHTML = place.address_components[i].long_name;
         }
-        if (marker.address_components[i].types[0] == 'country') {
-          document.getElementById('country').innerHTML = marker.address_components[i].long_name;
+        if (place.address_components[i].types[0] == 'country') {
+          document.getElementById('country').innerHTML = place.address_components[i].long_name;
         }
       }
-      document.getElementById('location').innerHTML = marker.formatted_address;
-      document.getElementById('lat').innerHTML = marker.geometry.location.lat();
-      document.getElementById('lon').innerHTML = marker.geometry.location.lng();
+      document.getElementById('location').innerHTML = place.formatted_address;
+      document.getElementById('lat').innerHTML = place.geometry.location.lat();
+      document.getElementById('lon').innerHTML = place.geometry.location.lng();
 
       // Osoitetietojen taulukkoa näyttäminen sivulle
       receivedGeoData.classList.remove('hidden');
@@ -173,9 +189,16 @@ function initMap() {
 
   setSearchFunctionality();
 
-  // Kartalla painettua merrkia tietojen tulostaminen (klikkaamalla merkille)
+  /**
+   * Kartalla painettua merrkia tietojen tulostaminen (klikkaamalla merkille)
+   * @param {*} marker  Merkki-olio
+   */
   const printLocationData = (marker) => {
-
+    document.getElementById('postal_code').innerHTML = place.address_components[i].long_name;
+    document.getElementById('country').innerHTML = place.address_components[i].long_name;
+    document.getElementById('location').innerHTML = place.formatted_address;
+    document.getElementById('lat').innerHTML = place.geometry.location.lat();
+    document.getElementById('lon').innerHTML = place.geometry.location.lng();
   }
 
   /* 
@@ -188,7 +211,11 @@ function initMap() {
   // Tietokannan tiedoston paikallinen osoite
   var placesFile = '../places.json';
 
-  // Paikallista json-tiedostoa lukeminen-funktio ('XMLHttpRequestin' kautta)
+  /**
+   * Paikallista json-tiedostoa lukeminen-funktio ('XMLHttpRequestin' kautta)
+   * @param {*} file      paikallisen json-tiedoston osoite
+   * @param {*} callback  tuloskäsittely-funktio
+   */
   const readPlacesFile = (file, callback) => {
     var rawFile = new XMLHttpRequest();
     rawFile.overrideMimeType("application/json");
@@ -201,7 +228,7 @@ function initMap() {
     rawFile.send(null);
   }
 
-  // Json=-tiedoston lukeminen-toiminto
+  // Json-tiedoston lukeminen-toiminto
   readPlacesFile(placesFile, function (text) {
     placesFromFile = JSON.parse(text);
     places = JSON.parse(JSON.stringify(placesFromFile));
@@ -220,7 +247,30 @@ function initMap() {
     return placesFromFile;
   });
 
-  // Merkkien animaatio-funktio
+  /**
+   * Tarkastellaan pysäköinnin aikaa ja tulostaa sen pituus sekä osoite
+   * @param {*} place   merkki-olio
+   * @returns           osoite ja sallittu aika (String)
+   */
+  const getDurationMsg = place => {
+    let msg = '';
+    if (place.duration !== 0) {
+      msg += `
+        <h4>${place.address}</h4>
+        <h4>Sallittu aika: ${place.duration} t.</h4>
+      `
+    } else {
+      msg += `
+        <h4>${place.address}</h4>
+        <h4>Sallittu aika: ei rajoituksia</h4>
+      `
+    }
+
+    return msg;
+  }
+  /**
+   * Merkkien animaatio-funktio
+   */
   function toggleBounce() {
     // Tarkistetaan, onko joka toinen merkki avattuna ja suljetaan tätä, kun on
     if (this.getAnimation() !== null) {
@@ -230,14 +280,16 @@ function initMap() {
       // Animaatio ei tällä hetkellä ole käytössä
       // this.setAnimation(google.maps.Animation.BOUNCE);
       // Painetulla merkilla ponnahdusilmoitusta luominen
-      infoWindow.setContent(`<h4>${this.address}</h4>`);
+      infoWindow.setContent(getDurationMsg(this));
       infoWindow.open(map, this);
       // Merkkia tietoja tulostaminen sivustolla olevalle taulukolle
       printLocationData(this);
     }
   }
 
-  // Osoitehaun kentän kartalle ilmestyminen kartan luomisen jälkeen
+  /**
+   * Osoitehaun kentän kartalle ilmestyminen kartan luomisen jälkeen
+   */
   const searchFieldSet = () => {
     document.getElementById('searchInput').classList.remove('hidden');
   }

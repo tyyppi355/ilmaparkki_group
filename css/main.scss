@@ -91,7 +91,6 @@ div {
 .aside {
 	background-color: #061a40;
 
-
 	p {
 		display: block;
 		margin: 0;
@@ -99,4 +98,34 @@ div {
 		font-family: $font-family;
 		font-size: 16px;
 	}
+
+	#geoData {
+		margin: 10px;
+		text-align: left;
+		border-collapse: collapse;
+		
+		tbody {
+	
+			tr {
+				border: 1px solid grey;
+				height: 30px;
+	
+				td {
+					padding: 10px;
+	
+					&:nth-child(odd) {
+						background: #e9f1ff;
+					}
+	
+					&:nth-child(even) {
+						background: #f7fcff;
+					}
+				}
+			}
+		}
+	}
+}
+
+.hidden {
+	display: none;
 }
