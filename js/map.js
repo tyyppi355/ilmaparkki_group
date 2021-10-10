@@ -7,6 +7,7 @@ var map, infoWindow;
  * Rajapinnan yleisfunktio
  */
 function initMap() {
+  
   // Peruskarttaasetukset
   var opt = {
     center: {
@@ -44,9 +45,10 @@ function initMap() {
    * @param {*} marker  paikan luottu merkki
    */
   const getAddressFromCoords = (map, coords, marker) => {
+    var API_KEY = 'AIzaSyAh92EwJSgERcoXkFE8TPIIsiPCXLeRO4g';
     const lat = coords.lat;
     const lng = coords.lng;
-    const url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=AIzaSyDSiKk0sELkvIVZ7n1YxqRlvyDLdWGpARU`;
+    const url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=${API_KEY}`;
     fetch(url)
     .then( response => response.json() )
     .then( data => {

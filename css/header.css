@@ -33,6 +33,7 @@ header {
   color: #ffffff;
   background: #2849a4;
   font-family: inherit;
+  position: relative;
 }
 
 .main-menu li a:hover {
@@ -41,6 +42,8 @@ header {
 }
 
 .main-menu li a:hover:after {
+  position: absolute;
+  bottom: -8px;
   content: '';
   display: block;
   height: 2px;
@@ -54,6 +57,8 @@ header {
 }
 
 .activeMenu:after {
+  position: absolute;
+  bottom: -8px;
   content: '';
   display: block;
   height: 2px;

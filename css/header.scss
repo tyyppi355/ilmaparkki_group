@@ -26,12 +26,15 @@ header {
       color: #ffffff;
       background: #2849a4;
       font-family: inherit;
+      position: relative;
 
       &:hover {
         color: #C5C5C5;
         background: #2849a4;
 
         &:after {
+          position: absolute;
+          bottom: -8px;
           content: '';
           display: block;
           height: 2px;
@@ -48,6 +51,8 @@ header {
   color: white;
 
   &:after {
+    position: absolute;
+    bottom: -8px;
     content: '';
     display: block;
     height: 2px;
