@@ -7,6 +7,10 @@ footer {
   width: 100%;
 }
 
+body {
+  min-height: 100vh;
+}
+
 html {
   overflow: scroll;
   overflow-x: hidden;
@@ -21,7 +25,6 @@ html::-webkit-scrollbar {
 html* {
   padding: 0;
   margin: 0;
-  font-family: "Roboto", sans-serif;
 }
 
 html h2 {
@@ -31,8 +34,6 @@ html h2 {
   text-align: center;
   width: 100%;
   padding: 12px 0px 12px;
-  font-family: "Roboto", sans-serif;
-  font-size: 20px;
 }
 
 main {
@@ -49,7 +50,6 @@ section {
 }
 
 li {
-  font-family: "Roboto", sans-serif;
   list-style-type: none;
 }
 
@@ -124,5 +124,21 @@ div {
 
 .hidden {
   display: none;
+}
+
+#haku {
+  margin: 10px 20px;
+}
+
+#weatherAdjuster {
+  position: relative;
+  text-align: Left;
+  margin: 0;
+}
+
+#weatherAdjuster img {
+  float: right;
+  max-width: 64px;
+  max-height: 64px;
 }
 /*# sourceMappingURL=main.css.map */
