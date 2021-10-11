@@ -97,8 +97,9 @@ div {
 		font-size: 16px;
 	}
 
-	#geoData {
-		width: 90%;
+	#geoData,
+	#covid {
+		width: 70%;
 		text-align: left;
 		border-collapse: collapse;
 		margin: 0 auto 20px;
@@ -188,4 +189,10 @@ div {
 
 .backstage h3 {
 	padding-top: 0;
+}
+
+#covid {
+	p {
+		padding-top: 0;
+	}
 }

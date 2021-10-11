@@ -25,56 +25,91 @@ document.addEventListener("DOMContentLoaded", () => {
 
   setActiveMenu();
 
-/* Sää ennuste API */
-  //Tehdään muuttujia
-  const apiUrl = 'http://api.weatherstack.com/current?access_key=6571d1d936905542a1429c32c9433d9c&units=m&query=';
-  let apiQuery;
-  const button = document.getElementById('searchButton');
+  /**
+  /* Sää ennuste API
+  */
+  const getWeatherData = () => {
+    //Tehdään muuttujia
+    const weatherApiKey = '6571d1d936905542a1429c32c9433d9c';
+    const apiUrl = `http://api.weatherstack.com/current?access_key=${weatherApiKey}&units=m&query=`;
+    let apiQuery;
+    const button = document.getElementById('searchButton');
 
-  //Katsotaan onko hakunappia painettu
-  button.addEventListener('click', makeQuery);
+    //Katsotaan onko hakunappia painettu
+    button.addEventListener('click', makeQuery);
 
-  //Kysellään annetut tiedot omalta nettisivulta
-  function makeQuery() {
+    //Kysellään annetut tiedot omalta nettisivulta
+    function makeQuery() {
 
-    //Poistaa napin käytöstä, kunnes sivun lataa uudelleen
-    document.getElementById("searchButton").disabled = true;
+      //Poistaa napin käytöstä, kunnes sivun lataa uudelleen
+      document.getElementById("searchButton").disabled = true;
 
-    apiQuery = apiUrl + document.getElementById('search').value;
+      apiQuery = apiUrl + document.getElementById('search').value;
 
-    search(apiQuery);
+      search(apiQuery);
+    }
+
+    const defaultQuery = apiUrl + 'Espoo';
+    search(defaultQuery);
+
+    //Tehdään haku rajapinta nettisivulle
+    function search(apiQuery) {
+      fetch(apiQuery).then(function (response) {
+        return response.json();
+      }).then(function (json) {
+        processResults(json);
+      }).catch(function (error) {
+        console.log(error.message);
+      });
+    }
+
+    //Luetaan etsittyä dataa ja tulostetaan innerHTML komennolla weatherAdjuster elementtiin
+    function processResults(jsonData) {
+      const weatherElem = document.getElementById('weatherAdjuster');
+      let htmlCode = `<p>`;
+
+      htmlCode += `<img src='${jsonData.current.weather_icons}'><img>`;
+      htmlCode += `Paikka: ${jsonData.location.name}<br>`;
+      htmlCode += `Sään kuvaus: ${jsonData.current.weather_descriptions}<br>`;
+      htmlCode += `Lämpötila: ${jsonData.current.temperature}°C<br>`;
+      htmlCode += `Tuntuu: ${jsonData.current.feelslike}°C<br>`;
+      htmlCode += `Tuulen nopeus: ${jsonData.current.wind_speed}m/s<br>`;
+      htmlCode += `Ilmankosteus: ${jsonData.current.humidity}%<br>`;
+      htmlCode += `</p>`;
+
+      //Lisätään tiedot innerHTML komennolla weather elementtiin
+      weatherElem.innerHTML += htmlCode;
+    }
   }
 
-  const defaultQuery = apiUrl + 'Espoo';
-  search(defaultQuery);
+  getWeatherData();
 
-  //Tehdään haku rajapinta nettisivulle
-  function search(apiQuery) {
-    fetch(apiQuery).then(function (response) {
+
+  /**
+   * COVID-19 tiedot API
+   */
+  function getCovidData() {
+    //Tehdään muuttujia
+    const covidApiUrl = 'https://api.apify.com/v2/key-value-stores/jEFt5tgCTMfjJpLD3/records/LATEST?disableRedirect=true';
+
+    fetch(covidApiUrl).then(function (response) {
       return response.json();
     }).then(function (json) {
-      console.log(json.error);
-      processResults(json);
+      covidResults(json);
     }).catch(function (error) {
       console.log(error.message);
     });
+
+    //Luetaan etsittyä dataa ja tulostetaan innerHTML komennolla weatherAdjuster elementtiin
+    function covidResults(jsonData) {
+      const covidElem = document.getElementById('covid');
+      let formatter = new Intl.NumberFormat('fi');
+      document.getElementById('newDesease').innerHTML = formatter.format(jsonData.infectedDaily);
+      document.getElementById('deseaseTotal').innerHTML = formatter.format(jsonData.infected);
+      document.getElementById('newDeaths').innerHTML = formatter.format(jsonData.deathsDaily);
+      document.getElementById('deathsTotal').innerHTML = formatter.format(jsonData.deaths);
+    }
   }
 
-  //Luetaan etsittyä dataa ja tulostetaan innerHTML komennolla weatherAdjuster elementtiin
-  function processResults(jsonData) {
-    const weatherElem = document.getElementById('weatherAdjuster');
-    let htmlCode = `<p>`;
-
-    htmlCode += `<img src='${jsonData.current.weather_icons}'><img>`;
-    htmlCode += `Paikka: ${jsonData.location.name}<br><br>`;
-    htmlCode += `Sään kuvaus: ${jsonData.current.weather_descriptions}<br><br>`;
-    htmlCode += `Lämpötila: ${jsonData.current.temperature}°C<br><br>`;
-    htmlCode += `Tuntuu: ${jsonData.current.feelslike}°C<br><br>`;
-    htmlCode += `Tuulen nopeus: ${jsonData.current.wind_speed}m/s<br><br>`;
-    htmlCode += `Ilmankosteus: ${jsonData.current.humidity}%<br><br>`;
-    htmlCode += `</p>`;
-
-    //Lisätään tiedot innerHTML komennolla weather elementtiin
-    weatherElem.innerHTML += htmlCode;
-  }
+  getCovidData();
 });

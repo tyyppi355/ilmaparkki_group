@@ -17,6 +17,31 @@ const aside = `
 		  </div>
     </section>
 
+    <section class='covid'>
+      <h2>COVID-19 tänään</h2>
+      
+      <table id="covid">
+        <tbody>
+          <tr>
+            <td>Uusia tartuntoja:</td>
+            <td><span id="newDesease"></span></td>
+          </tr>
+          <tr>
+            <td>Tartuntoja yht:</td>
+            <td><span id="deseaseTotal"></span></td>
+          </tr>
+          <tr>
+            <td>Kuollut:</td>
+            <td><span id="newDeaths"></span></td>
+          </tr>
+          <tr>
+            <td>Kuollut yht.:</td>
+            <td><span id="deathsTotal"></span></td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
     <section class='geoData hidden'>
       <h2>Osoitteesi tiedot</h2>
       <table class="geo-data" id="geoData">
@@ -36,15 +61,6 @@ const aside = `
         </tbody>
       </table>
     </section>
-
-    <section>
-      <h2>COVID-19 päivityksiä</h2>
-      <p>
-        API: Maailman tuoreen tilanteen koronasta
-      </p>
-    </section>
-
-    
   </aside>
 `;
 
