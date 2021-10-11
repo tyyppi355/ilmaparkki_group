@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang='fi'>
+
+<head>
+	<meta charset='utf-8'>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel='stylesheet' type='text/css' href='css/main.css'>
+	<link rel='stylesheet' type='text/css' href='css/header.css'>
+	<link rel='stylesheet' type='text/css' href='css/footer.css'>
+	<link rel='stylesheet' type='text/css' href='css/map.css'>
+	<link rel='stylesheet' type='text/css' href='css/media.css'>
+	<title>Ilmaparkki</title>
+</head>
+
+<body>
+	<div id='container'>
+		<script src="./js/header.js"></script>
+
+		<main>
+			<section class="map">
+				<h2>Ilmaiset parkkipaikat kartalla</h2>
+				<input id="searchInput" class="controls hidden" type="text" placeholder="Hae osoite">
+				<div id="map"></div>
+				
+			</section>
+		</main>
+
+		<script src="./js/aside.js"></script>
+
+		<script src="./js/footer.js"></script>
+	</div>
+
+	<script src="./js/map.js"></script>
+  <script async
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAh92EwJSgERcoXkFE8TPIIsiPCXLeRO4g&libraries=places&callback=initMap">
+  </script>
+	<script src="./js/main.js"></script>
+</body>
+</html>

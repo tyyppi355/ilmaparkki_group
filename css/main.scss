@@ -44,6 +44,7 @@ main {
 }
 
 section {
+	text-align: center;
 	display: block;
 	background: #4a6fd3;
 	margin: 30px 0px 30px;
@@ -142,4 +143,49 @@ div {
 	float: right;
 	max-width: 64px;
 	max-height: 64px;
+}
+
+.video, 
+.backstage {
+
+	h3 {
+		height: 60px;
+		margin-top: 30px;
+		padding-top: 30px;
+
+		a {
+			text-decoration: none;
+			padding: 20px;
+			background-color: #d5e7ff;
+			border-radius: 15px;
+			transition: .3s;
+
+			&:hover {
+				background-color: #7eb6ff;
+				transition: .3s;
+			}
+		}
+	}
+
+	video {
+		width: 90%;
+	}
+}
+
+.audio {
+	text-align: center;
+
+	audio {
+		width: 80%;
+		margin: 10px 0;
+		padding-bottom: 30px;
+
+		&:last-child {
+			margin-bottom: 0;
+		}
+	}
+}
+
+.backstage h3 {
+	padding-top: 0;
 }
