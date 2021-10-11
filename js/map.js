@@ -176,10 +176,11 @@ function initMap() {
       setMarkerIcon(marker, 35);
 
       marker.setPosition(place.geometry.location);
+      marker.icon = '../media/img/found.ico';
       marker.setVisible(true);
 
       // Osoiteilmoitustietojen luominen (kartan merkille antamista varten)
-      printLocationData(map, place, marker)
+      printLocationData(map, place, marker);
     });
   }
 
