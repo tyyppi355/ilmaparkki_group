@@ -4,6 +4,19 @@
 // Elementtia luominen
 const aside = `
   <aside class='aside'>
+    
+    <section>
+      <h2>Sää ennuste</h2>
+      <form id="haku">
+        <input id="search" type="text" name="search" placeholder="Hae paikkaa">
+        <button id="searchButton" type="button">Hae</button>
+		  </form>
+
+      <div id="weatherAdjuster">
+
+		  </div>
+    </section>
+
     <section class='geoData hidden'>
       <h2>Osoitteesi tiedot</h2>
       <table class="geo-data" id="geoData">
@@ -28,13 +41,6 @@ const aside = `
       <h2>COVID-19 päivityksiä</h2>
       <p>
         API: Maailman tuoreen tilanteen koronasta
-      </p>
-    </section>
-
-    <section>
-      <h2>Sää ennuste</h2>
-      <p>
-        API: sää ennuste
       </p>
     </section>
 

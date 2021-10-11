@@ -7,7 +7,7 @@ var map, infoWindow;
  * Rajapinnan yleisfunktio
  */
 function initMap() {
-  
+  var API_KEY_GEOCODE = 'AIzaSyCCwRrNbVDo_cepl_VaXyxVQEa_nL50AdY';
   // Peruskarttaasetukset
   var opt = {
     center: {
@@ -45,17 +45,16 @@ function initMap() {
    * @param {*} marker  paikan luottu merkki
    */
   const getAddressFromCoords = (map, coords, marker) => {
-    var API_KEY = 'AIzaSyAh92EwJSgERcoXkFE8TPIIsiPCXLeRO4g';
     const lat = coords.lat;
     const lng = coords.lng;
-    const url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=${API_KEY}`;
+    const url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=${API_KEY_GEOCODE}`;
     fetch(url)
-    .then( response => response.json() )
-    .then( data => {
-      printLocationData(map, data.results[0], marker);
-      // console.log(data.results[0].address_components);
-    })
-    .catch( err => console.log(err.message) );
+      .then(response => response.json())
+      .then(data => {
+        printLocationData(map, data.results[0], marker);
+        // console.log(data.results[0].address_components);
+      })
+      .catch(err => console.log(err.message));
   }
 
   /**
@@ -89,6 +88,8 @@ function initMap() {
               position: pos,
               map,
             });
+
+            currentLocMarker.type = 'currentLocation';
 
             setMarkerIcon(currentLocMarker, 50);
 
@@ -151,6 +152,7 @@ function initMap() {
       anchorPoint: new google.maps.Point(0, -29),
     });
 
+    marker.type = 'searchLocation';
     // Osoitehakukentan muutosten seuranta toiminto
     autocomplete.addListener('place_changed', function () {
       // Viimeistä ponnahdusilmoitusta sulkeminen
@@ -199,9 +201,19 @@ function initMap() {
       ].join(' ');
     }
 
+    let durationMsg = '';
+
+    if (marker.type === 'currentLocation') {
+      durationMsg += `<div><strong>Osoitteesi:</strong><br>${address}`;
+    } else if (marker.type === 'searchLocation') {
+      durationMsg += `${address}`;
+    } else {
+      durationMsg += `<div><strong>Osoite:</strong><br>${address} ${getDurationMsg(marker)}`;
+    }
+
     // Ponnahdusilmoitusta löydettysijainnissa luominen
     // infoWindow.setContent('<div><strong>' + place.name + '</strong><br>' + address);
-    infoWindow.setContent('<div><strong>' + 'Osoitteesi:' + '</strong><br>' + address);
+    infoWindow.setContent(durationMsg);
     infoWindow.open(map, marker);
 
     // Löytöosoitteen tietojen laittaminen taulukkoon sivulle
@@ -219,6 +231,17 @@ function initMap() {
     var receivedGeoData = document.querySelector('.geoData');
     // Osoitetietojen taulukkoa näyttäminen sivulle
     receivedGeoData.classList.remove('hidden');
+  }
+
+  const printClickedMarkerData = (map, marker) => {
+    const url = `https://maps.googleapis.com/maps/api/geocode/json?address=${marker.address}&key=${API_KEY_GEOCODE}`;
+    fetch(url)
+      .then(response => response.json())
+      .then(data => {
+        printLocationData(map, data.results[0], marker);
+        // console.log(data.results[0].address_components);
+      })
+      .catch(err => console.log(err.message));
   }
 
   /* 
@@ -272,16 +295,15 @@ function initMap() {
    * @param {*} place   merkki-olio
    * @returns           osoite ja sallittu aika (String)
    */
+  // <h4>${place.address}</h4>
   const getDurationMsg = place => {
     let msg = '';
     if (place.duration !== 0) {
       msg += `
-        <h4>${place.address}</h4>
         <h4>Sallittu aika: ${place.duration} t.</h4>
       `
     } else {
       msg += `
-        <h4>${place.address}</h4>
         <h4>Sallittu aika: ei rajoituksia</h4>
       `
     }
@@ -301,7 +323,8 @@ function initMap() {
       // this.setAnimation(google.maps.Animation.BOUNCE);
       // Painetulla merkilla ponnahdusilmoitusta luominen
       infoWindow.setContent(getDurationMsg(this));
-      infoWindow.open(map, this);
+      // infoWindow.open(map, this);
+      printClickedMarkerData(map, this);
       // Merkkia tietoja tulostaminen sivustolla olevalle taulukolle
       // printLocationData(this);
     }
