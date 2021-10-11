@@ -1,6 +1,6 @@
 $width: 1280px;
 
-@media (min-width: 900px) {
+@media (min-width: 800px) {
   main {
     width: 67%;
   }
@@ -15,5 +15,8 @@ $width: 1280px;
     max-width: $width;
   }
 
-
+  .aside #geoData,
+  .aside #covid {
+    width: 95%;
+  }
 }

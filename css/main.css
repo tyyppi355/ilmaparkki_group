@@ -99,27 +99,32 @@ div {
   font-size: 16px;
 }
 
-.aside #geoData {
-  width: 90%;
+.aside #geoData,
+.aside #covid {
+  width: 70%;
   text-align: left;
   border-collapse: collapse;
   margin: 0 auto 20px;
 }
 
-.aside #geoData tbody tr {
+.aside #geoData tbody tr,
+.aside #covid tbody tr {
   border: 1px solid grey;
   height: 30px;
 }
 
-.aside #geoData tbody tr td {
+.aside #geoData tbody tr td,
+.aside #covid tbody tr td {
   padding: 10px;
 }
 
-.aside #geoData tbody tr td:nth-child(odd) {
+.aside #geoData tbody tr td:nth-child(odd),
+.aside #covid tbody tr td:nth-child(odd) {
   background: #e9f1ff;
 }
 
-.aside #geoData tbody tr td:nth-child(even) {
+.aside #geoData tbody tr td:nth-child(even),
+.aside #covid tbody tr td:nth-child(even) {
   background: #f7fcff;
 }
 
@@ -187,6 +192,10 @@ div {
 }
 
 .backstage h3 {
+  padding-top: 0;
+}
+
+#covid p {
   padding-top: 0;
 }
 /*# sourceMappingURL=main.css.map */
