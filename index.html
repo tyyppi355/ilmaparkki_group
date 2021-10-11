@@ -21,11 +21,24 @@
 		</script>
 
 		<main>
-			<section class="map">
-				<h2>Ilmaiset parkkipaikat kartalla</h2>
-				<input id="searchInput" class="controls hidden" type="text" placeholder="Hae osoite">
-				<div id="map"></div>
-				
+			<section class="video">
+				<h2>Projektin video:</h2>
+			<div id="video">
+				<video src="./media/video/video.mp4" poster="./media/video/videoPoster.png" controls></video>
+			</div>
+			<h3><a href="https://www.youtube.com/watch?v=QHIxcP5fjYw" target="blank">YouTube linkki tähän videoon</a></h3>
+			</section>
+
+			<section class="audio">
+				<h2>Videon äänet:</h2>
+				<h3>Videota varten nauhoitettu alkuperainen ääni</h3>
+				<audio src="./media/audio/audio.mp3" controls></audio>
+			</section>
+
+			<section class="backstage">
+				<h2>Taustatyömme</h2>
+				<h3>Meidän taustatyömme (videon tavoite, kohderyhmä ja mihin kohderyhmän ongelmaan tai tarpeeseen video vastaa) löytyy linkistä</h3>
+				<h3><a href="./about.html">Linkki taustatyöhön</a></h3>
 			</section>
 		</main>
 
@@ -34,10 +47,6 @@
 		<script src="./js/footer.js"></script>
 	</div>
 
-	<script src="./js/map.js"></script>
-  <script async
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAh92EwJSgERcoXkFE8TPIIsiPCXLeRO4g&libraries=places&callback=initMap">
-  </script>
 	<script src="./js/main.js"></script>
 </body>
 </html>
