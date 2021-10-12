@@ -339,4 +339,35 @@ function initMap() {
   }
 
   setTimeout(searchFieldSet, 2000);
+
+  //--------------------------------------------------------------------------------------------------------------------------
+
+  function initMap(){
+    const directionsRenderer = new google.maps.DirectionsRenderer();
+    const directionsService = new google.maps.DirectionsService();
+    const map = new google.map.Map(document.getElementById("map"),{
+      center: (pos),
+    });
+
+directionsRenderer.setMap(map);
+calculateAndDisplayRoute(directionsService, directionsRenderer);
+
+
+  }
+  function calculateAndDisplayRoute(directionsService, directionsRenderer){
+    const selectedMode = google.maps.travelMode.DRIVING;
+
+    directionsService.route({
+      origin: (pos),
+      destination: (address),
+
+      travelMode: google.maps.travelMode.DRIVING,
+    })
+    .then((response)=> {
+      directionsRenderer.setDirections(response);
+    })
+    .catch((e)=> window.alert("Directions request failed due to " + status));
+    
+  }
+
 }
