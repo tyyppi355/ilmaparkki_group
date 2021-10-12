@@ -60,7 +60,7 @@ function initMap() {
   /**
    * Lisätään kartalle nykysijainti-nappia
    */
-  const setCurrentLocationButton = () => {
+  const setCurrentLocationFunctionality = () => {
 
     // Luodaan napin
     const locationButton = document.createElement("div");
@@ -129,12 +129,12 @@ function initMap() {
     }
   }
 
-  setCurrentLocationButton();
+  setCurrentLocationFunctionality();
 
   /**
    * Lisätään kartalle osoitehaku-toimintoa
    */
-  const setSearchFunctionality = () => {
+  const setSearchLocationFunctionality = () => {
     // Hakukenttaa sivulta saaminen
     var input = document.getElementById('searchInput');
     // Lisätään hakukenttaa kartalle
@@ -184,7 +184,7 @@ function initMap() {
     });
   }
 
-  setSearchFunctionality();
+  setSearchLocationFunctionality();
 
   /**
    * Osoitteen tietojen tulostaminen funktio
