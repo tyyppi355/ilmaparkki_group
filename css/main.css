@@ -33,7 +33,12 @@ html h2 {
   background: #2849a4;
   text-align: center;
   width: 100%;
-  padding: 12px 0px 12px;
+  padding: 12px 0;
+}
+
+html h3 {
+  color: white;
+  padding: 0 15px;
 }
 
 main {

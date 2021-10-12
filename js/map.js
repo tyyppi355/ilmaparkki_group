@@ -1,7 +1,7 @@
 // Tämä on kartan rajapinnan skripti
 'use strict';
 
-var map, infoWindow;
+var map, infoWindow, markerCurrentPlace, markerSearchPlace;
 
 /**
  * Rajapinnan yleisfunktio
@@ -27,11 +27,11 @@ function initMap() {
    * Merkin ikonia asentaminen funktio
    * @param {object} marker   Merkki-olio
    * @param {number} size     Ikonin koko pikselilla
+   * @param {number} iconName Ikonin tiedoston nimi
    */
-  const setMarkerIcon = (marker, size) => {
+  const setMarkerIcon = (marker, size, iconName) => {
     marker.setIcon(({
-      url: '../media/img/currentPlace.png',
-      sixe: new google.maps.Size(71, 71),
+      url: `../media/img/${iconName}`,
       origin: new google.maps.Point(0, 0),
       anchor: new google.maps.Point(17, 34),
       scaledSize: new google.maps.Size(size, size),
@@ -60,7 +60,7 @@ function initMap() {
   /**
    * Lisätään kartalle nykysijainti-nappia
    */
-  const setCurrentLocationButton = () => {
+  const setCurrentLocationFunctionality = () => {
 
     // Luodaan napin
     const locationButton = document.createElement("div");
@@ -73,6 +73,7 @@ function initMap() {
 
     // Napin toiminto
     locationButton.addEventListener("click", () => {
+      removeNonPlaceMarkers();
       // Kun sijaintihaku onnistuu (laitteen GPS on päällä)
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(
@@ -84,24 +85,24 @@ function initMap() {
             };
 
             // Nykyisen position merkkiä luominen kartalle
-            var currentLocMarker = new google.maps.Marker({
+            markerCurrentPlace = new google.maps.Marker({
               position: pos,
               map,
             });
 
-            currentLocMarker.type = 'currentLocation';
+            markerCurrentPlace.type = 'currentLocation';
 
-            setMarkerIcon(currentLocMarker, 50);
+            setMarkerIcon(markerCurrentPlace, 50, 'currentPlace.png');
 
             // Ponnahdusilmoitusta nykysijainnissa luominen
             infoWindow.setPosition(pos);
             infoWindow.setContent("Olet tässä");
             // Ponnahdusilmoitusta näyttäminen
-            infoWindow.open(map, currentLocMarker);
+            infoWindow.open(map, markerCurrentPlace);
             map.setCenter(pos);
             map.setZoom(17);
 
-            getAddressFromCoords(map, pos, currentLocMarker);
+            getAddressFromCoords(map, pos, markerCurrentPlace);
             document.querySelector('.geoData').classList.remove('hidden');
           },
           // Virhekäsittely
@@ -128,12 +129,12 @@ function initMap() {
     }
   }
 
-  setCurrentLocationButton();
+  setCurrentLocationFunctionality();
 
   /**
    * Lisätään kartalle osoitehaku-toimintoa
    */
-  const setSearchFunctionality = () => {
+  const setSearchLocationFunctionality = () => {
     // Hakukenttaa sivulta saaminen
     var input = document.getElementById('searchInput');
     // Lisätään hakukenttaa kartalle
@@ -146,18 +147,18 @@ function initMap() {
     var autocomplete = new google.maps.places.Autocomplete(input);
     autocomplete.bindTo('bounds', map);
 
-    // Löydetyn osoitteen merkkiä luominen kartalle
-    var marker = new google.maps.Marker({
-      map: map,
-      anchorPoint: new google.maps.Point(0, -29),
-    });
-
-    marker.type = 'searchLocation';
+    
     // Osoitehakukentan muutosten seuranta toiminto
     autocomplete.addListener('place_changed', function () {
       // Viimeistä ponnahdusilmoitusta sulkeminen
       infoWindow.close();
-      marker.setVisible(false);
+      removeNonPlaceMarkers();
+      // Löydetyn osoitteen merkkiä luominen kartalle
+      markerSearchPlace = new google.maps.Marker({
+        map: map,
+        anchorPoint: new google.maps.Point(0, -29),
+      });
+      markerSearchPlace.type = 'searchLocation';
       // Löytyvää osoiteetta saaminen
       var place = autocomplete.getPlace();
       if (!place.geometry) {
@@ -173,18 +174,17 @@ function initMap() {
       }
 
       // Löytyvää positiota merkkiä luominen kartalle
-      setMarkerIcon(marker, 35);
+      setMarkerIcon(markerSearchPlace, 50, 'searchPlace.png');
 
-      marker.setPosition(place.geometry.location);
-      marker.icon = '../media/img/found.ico';
-      marker.setVisible(true);
+      markerSearchPlace.setPosition(place.geometry.location);
+      markerSearchPlace.setVisible(true);
 
       // Osoiteilmoitustietojen luominen (kartan merkille antamista varten)
-      printLocationData(map, place, marker);
+      printLocationData(map, place, markerSearchPlace);
     });
   }
 
-  setSearchFunctionality();
+  setSearchLocationFunctionality();
 
   /**
    * Osoitteen tietojen tulostaminen funktio
@@ -311,6 +311,20 @@ function initMap() {
 
     return msg;
   }
+
+  const removeNonPlaceMarkers = () => {
+    if (markerCurrentPlace) {
+      markerCurrentPlace.setVisible(false);
+      markerCurrentPlace.setMap(null);
+      markerCurrentPlace = null;
+    }
+    if (markerSearchPlace) {
+      markerSearchPlace.setVisible(false);
+      markerSearchPlace.setMap(null);
+      markerSearchPlace = null;
+    } 
+  }
+
   /**
    * Merkkien animaatio-funktio
    */
@@ -321,13 +335,10 @@ function initMap() {
       infoWindow.close();
     } else {
       // Animaatio ei tällä hetkellä ole käytössä
-      // this.setAnimation(google.maps.Animation.BOUNCE);
-      // Painetulla merkilla ponnahdusilmoitusta luominen
-      infoWindow.setContent(getDurationMsg(this));
-      // infoWindow.open(map, this);
+      /* this.setAnimation(google.maps.Animation.BOUNCE); */
+      // Painetulla merkilla tietojen näyttö
+      removeNonPlaceMarkers();
       printClickedMarkerData(map, this);
-      // Merkkia tietoja tulostaminen sivustolla olevalle taulukolle
-      // printLocationData(this);
     }
   }
 
